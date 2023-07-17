@@ -30,11 +30,18 @@ function ExpenseProvider({ children }) {
     }
   };
 
+  const deleteExpense = (id) => {
+  const newExpenses = expenses.filter((item) => item.id !== id);
+  setExpenses(newExpenses);
+  localStorage.setItem("expenses", JSON.stringify(newExpenses));
+}
+
   const values = {
     expense,
     expenses,
     storeExpense,
     listExpenses,
+    deleteExpense
   };
 
   return (

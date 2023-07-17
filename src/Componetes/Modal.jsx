@@ -5,6 +5,7 @@ import { GiClapperboard } from "react-icons/gi";
 import { HiOutlineUser } from "react-icons/hi";
 import { MdOutlineLocalHospital } from "react-icons/md";
 import { LiaBusSolid } from "react-icons/lia";
+import { v4 as uuid } from 'uuid';
 import { FiMenu } from "react-icons/fi";
 import { useState } from "react";
 import { UseExpense } from "../Hooks/UseExpense";
@@ -86,6 +87,7 @@ const Modal = ({ closeModal }) => {
 
   const newExpense = () => {
     const data = {
+      id: uuid(),
       value,
       description,
       payType,
@@ -138,9 +140,9 @@ const Modal = ({ closeModal }) => {
               value={payType}
               onChange={handleChange(setPayType)}
             >
-              <option value="avista">À vista</option>
-              <option value="credito">Crédito</option>
-              <option value="debito">Débito</option>
+              <option className="capitalized" value="Vista">Vista</option>
+              <option className="capitalized" value="Crédito">Crédito</option>
+              <option className="capitalized" value="Débito">Débito</option>
             </select>
             <div className="flex flex-col justify-center items-stretch">
               <div className="flex flex-wrap gap-2 justify-center items-center">

@@ -9,7 +9,7 @@ function App() {
       <div>
         <NavBar />
         <BottomNavigation />
-        <ExpensesTable />
+         <ExpensesTable />
       </div>
     </ExpenseProvider>
   );
