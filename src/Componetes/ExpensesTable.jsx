@@ -2,33 +2,34 @@ import { UseExpense } from "../Hooks/UseExpense";
 import { useEffect } from "react";
 
 function ExpensesTable() {
-  const { listExpenses, expenses, storeExpense } = UseExpense()
-  
-  useEffect(() => {
-  },[storeExpense])
+  const { listExpenses, expenses, storeExpense, deleteExpense } = UseExpense();
+
+  useEffect(() => {}, [storeExpense]);
 
   useEffect(() => {
-    listExpenses()
+    listExpenses();
+  }, []);
 
- },[])
-  
   return (
     <table>
       <thead>
         <tr>
-          <th>Valor</th>
           <th>Descrição</th>
-          <th>Pagamento</th>
           <th>Categorias</th>
+          <th>Pagamento</th>
+          <th>Valor</th>
         </tr>
       </thead>
       <tbody>
         {expenses.map((item) => (
           <tr key={item.value}>
-            <td>{item.value}</td>
             <td>{item.description}</td>
-            <td>{item.payType}</td>
             <td>{item.categories}</td>
+            <td>{item.payType}</td>
+            <td>{item.value}</td>
+            <td>
+              <button onClick={() => deleteExpense(item.id)}>Deletar</button>
+            </td>
           </tr>
         ))}
       </tbody>
