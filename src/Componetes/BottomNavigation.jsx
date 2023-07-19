@@ -25,6 +25,7 @@ function BottomNavigation() {
               </div>
             </button>
           </Link>
+          <Link to="/">
           <button
             className="
            flex flex-col w-1/3 items-center"
@@ -35,6 +36,7 @@ function BottomNavigation() {
               <span>Cadastrar</span>
             </div>
           </button>
+          </Link>
           <Link to="/grafico">
             <button
               className="
