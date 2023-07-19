@@ -28,7 +28,7 @@ Certifique-se de ter o Node.js instalado em sua máquina.
    npm run dev
 5. A aplicação será iniciada e estará acessível em seu navegador através do seguinte endereço:
    ```shell
-   http://localhost:5174
+   http://localhost:5173
 
   Considerações Finais
   Agora você pode desfrutar da minha aplicação desenvolvida com JavaScript e estilizada com Tailwind CSS. Se surgirem dúvidas ou problemas, sinta-se à vontade       para entrar em contato.
