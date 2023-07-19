@@ -31,7 +31,7 @@ Certifique-se de ter o Node.js instalado em sua máquina.
    http://localhost:5173
 
   Considerações Finais
-  Agora você pode desfrutar da minha aplicação desenvolvida com Vue.js 3 e estilizada com Tailwind CSS. Se surgirem dúvidas ou problemas, sinta-se à vontade       para entrar em contato.
+  Agora você pode desfrutar da minha aplicação desenvolvida com JavaScript e estilizada com Tailwind CSS. Se surgirem dúvidas ou problemas, sinta-se à vontade       para entrar em contato.
 
   Divirta-se e aproveite! 🚀
 
