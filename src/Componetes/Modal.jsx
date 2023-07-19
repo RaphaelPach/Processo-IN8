@@ -53,7 +53,7 @@ const categorie = [
     icon: <FiMenu className="h-10 w-10  text-gray-500 hover:text-primary" />,
   },
 ];
-
+/* Modal finalizado */
 const Modal = ({ closeModal }) => {
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
