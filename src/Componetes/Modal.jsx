@@ -54,47 +54,31 @@ const categorie = [
   },
 ];
 
-/* const initState = {
- value: "",
- description: "",
- payType:"",
- categories:"",
-}; */
-
 const Modal = ({ closeModal }) => {
   const [value, setValue] = useState("");
   const [description, setDescription] = useState("");
   const [payType, setPayType] = useState("");
   const [categories, setCategories] = useState("");
-  /* const [dispesa, setDispesa] = useState(initState); */
   const { storeExpense } = UseExpense();
   const [selectedCategory, setSelectedCategory] = useState("");
-
-  /*  const handleChange = ({target}) => {
-    const { name, value } = target
-    setDispesa((prevState) => ({ ...prevState, [name]: value }))
-  } */
 
   const handleChange = (setState) => (event) => {
     setState(event.target.value);
   };
 
-  const handleAddExpanse = (event) => {
+  const handleAddExpense = (event) => {
     event.preventDefault();
-    event.target.reset();
-    /* setDispesa(""); */
-  };
-
-  const newExpense = () => {
     const data = {
       id: uuid(),
       value: Number(value),
       description,
-      payType: 'Dinheiro',
+      payType: payType || "Dinheiro",
       categories,
     };
     storeExpense(data);
+    closeModal();
   };
+
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -114,7 +98,7 @@ const Modal = ({ closeModal }) => {
               </button>
             </div>
           </div>
-          <form className="space-y-6 flex flex-col" onSubmit={handleAddExpanse}>
+          <form className="space-y-6 flex flex-col" onSubmit={handleAddExpense}>
             <input
               name="valor"
               type="number"
@@ -129,7 +113,7 @@ const Modal = ({ closeModal }) => {
               name="descricao"
               type="text"
               className="border border-gray-300 p-2 text-black"
-              placeholder="Dispesa"
+              placeholder="Despesa"
               value={description}
               onChange={handleChange(setDescription)}
             />
@@ -138,8 +122,9 @@ const Modal = ({ closeModal }) => {
               placeholder="Tipo de Pagamento"
               name="pagamento"
               value={payType}
-              onChange={handleChange(setPayType)}
+              onChange={(event) => setPayType(event.target.value)}
             >
+              <option className="capitalized" value="">Tipo de Pagamento</option>
               <option className="capitalized" value="Dinheiro">Dinheiro</option>
               <option className="capitalized" value="Crédito">Crédito</option>
               <option className="capitalized" value="Débito">Débito</option>
@@ -151,11 +136,10 @@ const Modal = ({ closeModal }) => {
                     key={item.id}
                     className={`p-4 border border-1 shadow-lg mt-2`}
                     onClick={(e) => {
-                      e.preventDefault()
+                      e.preventDefault();
                       setSelectedCategory(item.name);
-                      setCategories(item.name)
+                      setCategories(item.name);
                     }}
-                    
                   >
                     {React.cloneElement(item.icon, {
                       className: `${
@@ -168,7 +152,7 @@ const Modal = ({ closeModal }) => {
                 ))}
               </div>
               <button
-                onClick={newExpense}
+                type="submit"
                 className="bg-primary
                  hover:bg-pink-700
                  text-white font-bold py-2
