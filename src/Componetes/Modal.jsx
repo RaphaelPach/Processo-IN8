@@ -88,9 +88,9 @@ const Modal = ({ closeModal }) => {
   const newExpense = () => {
     const data = {
       id: uuid(),
-      value,
+      value: Number(value),
       description,
-      payType,
+      payType: 'Dinheiro',
       categories,
     };
     storeExpense(data);
@@ -117,7 +117,7 @@ const Modal = ({ closeModal }) => {
           <form className="space-y-6 flex flex-col" onSubmit={handleAddExpanse}>
             <input
               name="valor"
-              type="text"
+              type="number"
               value={value}
               onChange={handleChange(setValue)}
               className="border border-gray-300 
@@ -140,7 +140,7 @@ const Modal = ({ closeModal }) => {
               value={payType}
               onChange={handleChange(setPayType)}
             >
-              <option className="capitalized" value="Vista">Vista</option>
+              <option className="capitalized" value="Dinheiro">Dinheiro</option>
               <option className="capitalized" value="Crédito">Crédito</option>
               <option className="capitalized" value="Débito">Débito</option>
             </select>
