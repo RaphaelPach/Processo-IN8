@@ -75,6 +75,7 @@ const Modal = ({ closeModal }) => {
       description,
       payType: payType || "Dinheiro",
       categories,
+      data: new Date().toISOString().split('T')[0]
     };
     storeExpense(data);
     closeModal();
@@ -82,7 +83,7 @@ const Modal = ({ closeModal }) => {
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div
           className="bg-white sm:w-full md:w-2/5
           mx-8 h-4/6 md:h-4/4 lg:h-4/4 xl:h-3/4  2xl:h-3/6 rounded-lg
