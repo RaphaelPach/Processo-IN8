@@ -17,7 +17,6 @@ const COLORS = [
 const ExpenseStatistics = () => {
   const { expenses } = UseExpense();
   const isIn768 = useMediaQuery({ query: "(max-width: 768px)" });
-  console.log("=>", isIn768);
   // Calcular as estatísticas de despesas por categoria
   const stats = expenses.reduce((acc, expense) => {
     if (!acc[expense.categories]) {
