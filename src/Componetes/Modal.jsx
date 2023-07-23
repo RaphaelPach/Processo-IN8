@@ -69,13 +69,15 @@ const Modal = ({ closeModal }) => {
 
   const handleAddExpense = (event) => {
     event.preventDefault();
+    const date = new Date().toISOString().split('T')[0];
+    const dateFormat = date.split('-').reverse().join('/');
     const data = {
       id: uuid(),
       value: Number(value),
       description,
       payType: payType || "Dinheiro",
       categories,
-      data: new Date().toISOString().split('T')[0]
+      data: dateFormat
     };
     storeExpense(data);
     closeModal();
