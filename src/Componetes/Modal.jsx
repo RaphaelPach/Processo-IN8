@@ -128,7 +128,7 @@ const Modal = ({ closeModal }) => {
               value={payType}
               onChange={(event) => setPayType(event.target.value)}
             >
-              <option className="capitalized" value="">Tipo de pagamento</option>
+              {/* <option className="capitalized" placeholder="Tipo de pagamento"></option> */}
               <option className="capitalized" value="Dinheiro">Dinheiro</option>
               <option className="capitalized" value="Crédito">Crédito</option>
               <option className="capitalized" value="Débito">Débito</option>
