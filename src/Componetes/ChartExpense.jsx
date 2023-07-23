@@ -1,8 +1,9 @@
 import _ from "lodash";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { BarChart, Bar, Cell, XAxis, Tooltip, Pie, PieChart } from "recharts";
 import { UseExpense } from "../Hooks/UseExpense";
 import BottomNavigation from "./BottomNavigation";
 import NavBar from "./NavBar";
+import { useMediaQuery } from "react-responsive";
 
 const COLORS = [
   "#01579b",
@@ -15,7 +16,8 @@ const COLORS = [
 
 const ExpenseStatistics = () => {
   const { expenses } = UseExpense();
-  console.log(expenses);
+  const isIn768 = useMediaQuery({ query: "(max-width: 768px)" });
+  console.log("=>", isIn768);
   // Calcular as estatísticas de despesas por categoria
   const stats = expenses.reduce((acc, expense) => {
     if (!acc[expense.categories]) {
@@ -46,32 +48,49 @@ const ExpenseStatistics = () => {
     <>
       <NavBar />
       <BottomNavigation />
-      <div className="w-full mt-10 max-w-xl mx-auto flex flex-col items-center gap-8">
+      <div className="w-full mt-10 max-w-xl md:max-w-4xl mx-auto flex flex-col items-center gap-8">
         <h2 className="text-2xl font-bold text-slate-700">
           Despesas por categoria
         </h2>
         <div className="w-full flex justify-center overflow-hidden">
-          <PieChart width={400} height={200}>
-            <Pie
-              data={chartData}
-              cx="50%"
-              cy="50%"
-              labelLine={true}
-              outerRadius={70}
-              fill="#8884d8"
-              dataKey="value"
-              label={({ name, percent }) =>
-                `${name} ${(percent * 100).toFixed(0)}%`
-              }
-            >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
+          {!isIn768 ? (
+            <BarChart width={800} height={300} data={chartData}>
+              <XAxis dataKey="name" />
+              <Bar
+                dataKey="value"
+                fill="#8884d8"
+                label={({ value }) => `${value}`}
+                barSize={30}
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
+              <Tooltip />
+            </BarChart>
+          ) : (
+            <PieChart width={400} height={200}>
+              <Pie
+                data={chartData}
+                cx="50%"
+                cy="50%"
+                labelLine={true}
+                outerRadius={70}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, percent }) =>
+                  `${name} ${(percent * 100).toFixed(0)}%`
+                }
+              >
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          )}
         </div>
-        <div className="">
+        <div>
           <h3 className="text-2xl font-bold mb-8 text-slate-700 mt-10">
             Porcentagem por categoria
           </h3>
@@ -80,7 +99,7 @@ const ExpenseStatistics = () => {
               .map((category) => ({
                 category,
                 percentage: parseFloat(percentages[category]),
-                color: chartData.find((data) => data.name === category)?.color, // Adicione esta linha para obter a cor correspondente
+                color: chartData.find((data) => data.name === category)?.color,
               }))
               .sort((a, b) => b.percentage - a.percentage)
               .map(({ category, percentage, color }, i) => (
@@ -88,9 +107,7 @@ const ExpenseStatistics = () => {
                   <span className="font-medium" style={{ color }}>
                     {category}
                   </span>{" "}
-                  {/* Adicione a propriedade de estilo aqui */}
-                  <span style={{ color }}>{percentage.toFixed(2)}%</span>{" "}
-                  {/* Adicione a propriedade de estilo aqui */}
+                  <span style={{ color }}>{percentage.toFixed(2)}%</span>
                 </li>
               ))}
           </ul>

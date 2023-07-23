@@ -13,8 +13,8 @@ function NavBar() {
       className="flex justify-between items-center w-full h-20
     px-8 text-white bg-[rgb(202,86,150)] shadow-lg"
     >
-      <span className="font-bold text-5xl">IN-WALLET</span>
-      <span className="font-bold text-5xl text-Second">{total}</span>
+      <span className="font-bold text-2xl md:text-5xl">IN-WALLET</span>
+      <span className="font-bold text-2xl md:text-5xl text-Second">{total}</span>
     </div>
   );
 }
